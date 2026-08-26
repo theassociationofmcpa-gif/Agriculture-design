@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, ChevronLeft, ChevronRight, Expand, X } from "lucide-react"
 
 const gallery = [
   {
@@ -29,7 +29,26 @@ const gallery = [
 
 export function CatalogueSection() {
   const [active, setActive] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
   const shot = gallery[active]!
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setLightboxOpen(false)
+      if (e.key === "ArrowRight") setActive((i) => (i + 1) % gallery.length)
+      if (e.key === "ArrowLeft") setActive((i) => (i - 1 + gallery.length) % gallery.length)
+    }
+
+    document.addEventListener("keydown", onKeyDown)
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown)
+      document.body.style.overflow = ""
+    }
+  }, [lightboxOpen])
 
   return (
     <section id="catalogue" className="bg-[#e9e6d9] py-20 md:py-[112px] md:pb-[120px]">
@@ -73,7 +92,12 @@ export function CatalogueSection() {
 
           <div>
             <div className="bg-forest p-3.5 shadow-[12px_12px_0_rgba(86,112,63,0.22)] md:shadow-[18px_18px_0_rgba(86,112,63,0.22)]">
-              <div className="group relative flex aspect-4/3 flex-col items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#2c4433] to-[#152720] text-[11px] uppercase tracking-[0.13em] text-cream">
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(true)}
+                aria-label={`Open full-size image: ${shot.label}`}
+                className="group relative flex aspect-4/3 w-full flex-col items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#2c4433] to-[#152720] p-0 text-[11px] uppercase tracking-[0.13em] text-cream"
+              >
                 <Image
                   src={shot.url || "/placeholder.svg"}
                   alt={shot.alt}
@@ -83,7 +107,10 @@ export function CatalogueSection() {
                 <span className="absolute bottom-4 left-4 z-10 border border-[#bdd66a]/40 bg-[#0b1a14]/66 px-[14px] py-2 text-[10px] tracking-[0.16em] text-[#e8f0d2] backdrop-blur-[6px]">
                   {shot.label}
                 </span>
-              </div>
+                <span className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center border border-[#bdd66a]/40 bg-[#0b1a14]/66 text-[#e8f0d2] opacity-0 backdrop-blur-[6px] transition-opacity duration-300 group-hover:opacity-100">
+                  <Expand size={15} />
+                </span>
+              </button>
               <div className="flex items-end justify-between gap-5 px-0.5 pt-[18px] text-cream">
                 <div className="flex flex-col gap-[5px]">
                   <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#bdd66a]">
@@ -124,6 +151,77 @@ export function CatalogueSection() {
           </div>
         </div>
       </div>
+
+      {lightboxOpen ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${shot.label} — full size image ${active + 1} of ${gallery.length}`}
+          className="fixed inset-0 z-50 flex flex-col bg-[#0b1a14]/96 backdrop-blur-sm"
+        >
+          <div className="flex items-center justify-between px-5 py-4 text-cream md:px-9 md:py-6">
+            <span className="text-[11px] uppercase tracking-[0.16em] text-white/60">
+              {active + 1} / {gallery.length} — {shot.label}
+            </span>
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(false)}
+              aria-label="Close full-size view"
+              className="grid h-10 w-10 place-items-center border border-white/25 text-cream transition-colors duration-200 hover:bg-white/10"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <div className="relative flex flex-1 items-center justify-center px-4 pb-4 md:px-16 md:pb-10">
+            <button
+              type="button"
+              onClick={() => setActive((i) => (i - 1 + gallery.length) % gallery.length)}
+              aria-label="Previous image"
+              className="absolute left-2 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center border border-white/25 text-cream transition-colors duration-200 hover:bg-white/10 md:left-6"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <div className="relative h-full max-h-[75vh] w-full max-w-4xl">
+              <Image
+                src={shot.url || "/placeholder.svg"}
+                alt={shot.alt}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setActive((i) => (i + 1) % gallery.length)}
+              aria-label="Next image"
+              className="absolute right-2 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center border border-white/25 text-cream transition-colors duration-200 hover:bg-white/10 md:right-6"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+
+          <div className="mx-auto mb-6 flex gap-3 px-5">
+            {gallery.map((thumb, i) => (
+              <button
+                type="button"
+                key={thumb.url}
+                onClick={() => setActive(i)}
+                aria-label={`View ${thumb.label}`}
+                aria-pressed={i === active}
+                className={`relative h-12 w-12 flex-none overflow-hidden border p-0 transition-opacity duration-300 md:h-14 md:w-14 ${
+                  i === active ? "border-[#bdd66a] opacity-100" : "border-white/20 opacity-50 hover:opacity-90"
+                }`}
+              >
+                <Image src={thumb.url || "/placeholder.svg"} alt={thumb.alt} fill className="object-cover" />
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

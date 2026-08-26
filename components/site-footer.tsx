@@ -9,10 +9,7 @@ export function SiteFooter() {
         >
           <span>Ruedus</span>
         </a>
-        <a href="#top" className="order-3 w-full text-[11px] text-muted-foreground no-underline md:order-none md:w-auto">
-          Back to top ↑
-        </a>
-        <p className="order-2 m-0 text-[11px] text-muted-foreground md:order-none">
+        <p className="m-0 text-[11px] text-muted-foreground">
           © 2026 Ruedus. All rights reserved.
         </p>
       </div>

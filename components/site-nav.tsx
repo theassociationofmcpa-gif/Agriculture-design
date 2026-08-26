@@ -1,8 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import { ArrowUpRight, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 export function SiteNav() {
   const [open, setOpen] = useState(false)
@@ -38,21 +37,14 @@ export function SiteNav() {
         >
           What we do
         </a>
-        <Link
-          href="/contact"
+        <a
+          href="#contact"
           onClick={() => setOpen(false)}
           className="flex min-h-[52px] items-center border-b border-white/[0.14] text-sm text-cream no-underline last:border-b-0 md:min-h-0 md:border-0 md:text-[13px]"
         >
           Contact
-        </Link>
+        </a>
       </div>
-
-      <a
-        href="#contact"
-        className="hidden items-center gap-[9px] text-[13px] font-semibold text-cream no-underline md:flex"
-      >
-        Get in touch <ArrowUpRight size={15} />
-      </a>
 
       <button
         type="button"

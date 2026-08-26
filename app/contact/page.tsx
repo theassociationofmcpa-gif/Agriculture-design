@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Leaf, Mail, MapPin, Phone } from "lucide-react"
+import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react"
 import { SiteFooter } from "@/components/site-footer"
 
 export const metadata: Metadata = {
@@ -67,9 +67,6 @@ export default function ContactPage() {
           href="/"
           className="flex items-center gap-[9px] text-xl font-bold tracking-[-0.07em] text-forest no-underline"
         >
-          <span className="grid h-[31px] w-[31px] place-items-center rounded-full border border-current">
-            <Leaf size={15} />
-          </span>
           <span>Ruedus</span>
         </Link>
         <Link
