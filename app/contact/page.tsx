@@ -5,17 +5,33 @@ import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react"
 import { SiteFooter } from "@/components/site-footer"
 
 export const metadata: Metadata = {
-  title: "Contact UAB Ruedus | Wholesale Enquiries",
+  title: "Contact",
   description:
     'Reach the UAB "Ruedus" team in Vilnius for fertilizer, agrochemical, and agricultural goods wholesale enquiries.',
+  alternates: {
+    canonical: "https://www.ruedus.com/contact",
+  },
   openGraph: {
     title: "Contact UAB Ruedus | Wholesale Enquiries",
     description:
       'Reach the UAB "Ruedus" team in Vilnius for fertilizer, agrochemical, and agricultural goods wholesale enquiries.',
     type: "website",
+    url: "https://www.ruedus.com/contact",
+    images: [
+      {
+        url: "/urea-container.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "UAB Ruedus wholesale enquiries",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: "Contact UAB Ruedus | Wholesale Enquiries",
+    description:
+      'Reach the UAB "Ruedus" team in Vilnius for fertilizer, agrochemical, and agricultural goods wholesale enquiries.',
+    images: ["/urea-container.jpeg"],
   },
 }
 
