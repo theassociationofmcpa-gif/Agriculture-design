@@ -78,7 +78,7 @@ export function CatalogueSection() {
               <li className="flex justify-between gap-4 border-t border-line py-[13px] text-xs uppercase tracking-[0.11em] text-muted-foreground">
                 Packaging{" "}
                 <strong className="text-sm font-semibold tracking-[-0.01em] text-foreground normal-case">
-                  Big bag · 500 kg
+                  Big bag · 1000 kg
                 </strong>
               </li>
               <li className="flex justify-between gap-4 border-t border-line py-[13px] text-xs uppercase tracking-[0.11em] text-muted-foreground">
