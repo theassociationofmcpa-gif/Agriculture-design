@@ -110,8 +110,8 @@ export default function ContactPage() {
       <figure className="relative mx-auto mb-[100px] w-[min(100%-36px,1180px)] md:mb-[150px] md:w-[min(1180px,calc(100%-48px))]">
         <div className="relative h-[280px] w-full shadow-[10px_10px_0_rgba(86,112,63,0.22)] md:h-[clamp(280px,42vw,520px)] md:shadow-[18px_18px_0_rgba(86,112,63,0.22)]">
           <Image
-            src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=2200&q=85"
-            alt="Rows of young crops growing in golden light, echoing the landing page hero"
+            src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2200&q=85"
+            alt="Freight truck hauling agricultural goods along a rural highway"
             fill
             className="object-cover"
           />
