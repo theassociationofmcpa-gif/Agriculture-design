@@ -62,7 +62,7 @@ const contactItems = [
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-background text-forest">
-      <nav className="mx-auto flex w-[min(100%-36px,1180px)] items-center justify-between py-[26px] md:w-[min(1180px,calc(100%-48px))]">
+      <nav className="mx-auto flex w-[min(100%-36px,1180px)] items-center justify-between border-b border-forest/25 py-[26px] md:w-[min(1180px,calc(100%-48px))]">
         <Link
           href="/"
           className="flex items-center gap-[9px] text-xl font-bold tracking-[-0.07em] text-forest no-underline"
