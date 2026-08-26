@@ -24,7 +24,7 @@ export function HeroSection() {
         <h1 className="my-5 text-[58px] font-semibold leading-[0.9] tracking-[-0.08em] md:my-[25px] md:text-[clamp(58px,9vw,120px)]">
           Moving agriculture
           <br />
-          <em className="font-normal not-italic text-[#bdd66a]">forward.</em>
+          <em className="font-bold not-italic text-[#bdd66a]">forward.</em>
         </h1>
         <p className="max-w-[390px] text-[17px] leading-[1.55] text-white/78">
           UAB &ldquo;Ruedus&rdquo; connects growers and markets with the products that help

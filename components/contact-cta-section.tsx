@@ -9,7 +9,7 @@ export function ContactCtaSection() {
           <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-forest">
             Start a conversation
           </p>
-          <h2 className="mt-[22px] text-[54px] font-semibold leading-[0.88] tracking-[-0.08em] md:text-[clamp(54px,8vw,100px)]">
+          <h2 className="mt-[22px] text-[54px] font-semibold leading-[1.08] tracking-[-0.08em] md:text-[clamp(54px,8vw,100px)] md:leading-[1.05]">
             Let&rsquo;s grow
             <br />
             <em className="font-normal not-italic">something good.</em>
