@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.ruedus.com'),
   title: 'UAB Ruedus | Agricultural Wholesale in Vilnius',
   description:
     'UAB "Ruedus" supplies fertilizers, agrochemical products, and agricultural goods from Vilnius, Lithuania.',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     description:
       'UAB "Ruedus" supplies fertilizers, agrochemical products, and agricultural goods from Vilnius, Lithuania.',
     type: 'website',
+    url: 'https://www.ruedus.com',
   },
   twitter: {
     card: 'summary_large_image',

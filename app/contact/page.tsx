@@ -33,28 +33,12 @@ const contactItems = [
   },
   {
     label: "Call us",
-    value: (
-      <>
-        +370 600 00000
-        <br />
-        <small className="text-[10px] font-normal text-muted-foreground">
-          Placeholder contact
-        </small>
-      </>
-    ),
+    value: <>+370 656 22765</>,
     icon: Phone,
   },
   {
     label: "Email us",
-    value: (
-      <>
-        info@ruedus.lt
-        <br />
-        <small className="text-[10px] font-normal text-muted-foreground">
-          Placeholder contact
-        </small>
-      </>
-    ),
+    value: <>Andrius@ruedus.lt</>,
     icon: Mail,
   },
 ]
