@@ -21,7 +21,7 @@ export function HeroSection() {
         <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#c9e07d]">
           Agricultural wholesale · Vilnius, Lithuania
         </p>
-        <h1 className="my-5 text-[58px] font-semibold leading-[0.9] tracking-[-0.08em] md:my-[25px] md:text-[clamp(58px,9vw,120px)]">
+        <h1 className="my-5 text-[58px] font-semibold leading-[1.1] tracking-[-0.08em] md:my-[25px] md:text-[clamp(58px,9vw,120px)]">
           Moving agriculture
           <br />
           <em className="font-bold not-italic text-[#bdd66a]">forward.</em>

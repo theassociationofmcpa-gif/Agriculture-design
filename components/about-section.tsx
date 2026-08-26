@@ -8,7 +8,7 @@ export function AboutSection() {
         01 <span className="text-muted-foreground">About Ruedus</span>
       </div>
       <div className="mt-10 grid grid-cols-1 gap-10 md:mt-[55px] md:grid-cols-2 md:gap-[100px]">
-        <h2 className="m-0 text-[42px] font-semibold leading-[0.95] tracking-[-0.07em] text-foreground md:text-[clamp(42px,5vw,72px)]">
+        <h2 className="m-0 text-[42px] font-semibold leading-[1.15] tracking-[-0.07em] text-foreground md:text-[clamp(42px,5vw,72px)]">
           Trade with purpose.
           <br />
           <span className="text-olive">Built for growth.</span>
