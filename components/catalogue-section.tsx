@@ -4,33 +4,65 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { ArrowUpRight, ChevronLeft, ChevronRight, Expand, X } from "lucide-react"
 
-const gallery = [
+const products = [
   {
-    url: "/urea-container.jpeg",
-    label: "Container loading",
-    alt: "Urea big bags loaded inside a shipping container",
+    name: "Urea N46",
+    subtitle: "Granulated, wholesale quantities",
+    category: "Nitrogen fertilizer",
+    packaging: "Big bag · 1000 kg",
+    availability: "Year-round",
+    gallery: [
+      {
+        url: "/urea-container.jpeg",
+        label: "Container loading",
+        alt: "Urea big bags loaded inside a shipping container",
+      },
+      {
+        url: "/urea-field.jpeg",
+        label: "Yard under sky",
+        alt: "Rows of white Urea big bags in an open yard under a dramatic cloudy sky",
+      },
+      {
+        url: "/urea-rows.jpeg",
+        label: "Bags in rows",
+        alt: "Rows of Indorama Fargonaazot Urea big bags outdoors under a blue sky",
+      },
+      {
+        url: "/urea-bag-closeup.jpeg",
+        label: "Bag close-up",
+        alt: "Close-up of an Indorama Fargonaazot Urea N46 big bag label",
+      },
+    ],
   },
   {
-    url: "/urea-field.jpeg",
-    label: "Yard under sky",
-    alt: "Rows of white Urea big bags in an open yard under a dramatic cloudy sky",
-  },
-  {
-    url: "/urea-rows.jpeg",
-    label: "Bags in rows",
-    alt: "Rows of Indorama Fargonaazot Urea big bags outdoors under a blue sky",
-  },
-  {
-    url: "/urea-bag-closeup.jpeg",
-    label: "Bag close-up",
-    alt: "Close-up of an Indorama Fargonaazot Urea N46 big bag label",
+    name: "NPK Fertilizer",
+    subtitle: "Granulated blend, wholesale quantities",
+    category: "NPK fertilizer",
+    packaging: "NPK 15-15-15 · 8/20/30 · 10/26/26",
+    availability: "Year-round",
+    gallery: [
+      {
+        url: "/npk-fertilizer.jpeg",
+        label: "Granules on leaf",
+        alt: "White NPK fertilizer granules spread across a green leaf",
+      },
+    ],
   },
 ]
 
 export function CatalogueSection() {
+  const [productIndex, setProductIndex] = useState(0)
   const [active, setActive] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
-  const shot = gallery[active]!
+  const product = products[productIndex]!
+  const gallery = product.gallery
+  const shot = gallery[active] ?? gallery[0]!
+
+  function goToProduct(next: number) {
+    const clamped = (next + products.length) % products.length
+    setProductIndex(clamped)
+    setActive(0)
+  }
 
   useEffect(() => {
     if (!lightboxOpen) return
@@ -72,54 +104,98 @@ export function CatalogueSection() {
               <li className="flex justify-between gap-4 border-t border-line py-[13px] text-xs uppercase tracking-[0.11em] text-muted-foreground">
                 Category{" "}
                 <strong className="text-sm font-semibold tracking-[-0.01em] text-foreground normal-case">
-                  Nitrogen fertilizer
+                  {product.category}
                 </strong>
               </li>
               <li className="flex justify-between gap-4 border-t border-line py-[13px] text-xs uppercase tracking-[0.11em] text-muted-foreground">
                 Packaging{" "}
                 <strong className="text-sm font-semibold tracking-[-0.01em] text-foreground normal-case">
-                  Big bag · 1000 kg
+                  {product.packaging}
                 </strong>
               </li>
               <li className="flex justify-between gap-4 border-t border-line py-[13px] text-xs uppercase tracking-[0.11em] text-muted-foreground">
                 Availability{" "}
                 <strong className="text-sm font-semibold tracking-[-0.01em] text-foreground normal-case">
-                  Year-round
+                  {product.availability}
                 </strong>
               </li>
             </ul>
+
+            <div className="mt-[30px] flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => goToProduct(productIndex - 1)}
+                aria-label="Previous product"
+                className="grid h-10 w-10 place-items-center border border-line text-foreground transition-colors duration-200 hover:border-forest hover:bg-forest hover:text-cream"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={() => goToProduct(productIndex + 1)}
+                aria-label="Next product"
+                className="grid h-10 w-10 place-items-center border border-line text-foreground transition-colors duration-200 hover:border-forest hover:bg-forest hover:text-cream"
+              >
+                <ChevronRight size={16} />
+              </button>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                Product {productIndex + 1} / {products.length}
+              </span>
+            </div>
           </div>
 
           <div>
             <div className="bg-forest p-3.5 shadow-[12px_12px_0_rgba(86,112,63,0.22)] md:shadow-[18px_18px_0_rgba(86,112,63,0.22)]">
-              <button
-                type="button"
-                onClick={() => setLightboxOpen(true)}
-                aria-label={`Open full-size image: ${shot.label}`}
-                className="group relative flex aspect-4/3 w-full flex-col items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#2c4433] to-[#152720] p-0 text-[11px] uppercase tracking-[0.13em] text-cream"
-              >
-                <Image
-                  src={shot.url || "/placeholder.svg"}
-                  alt={shot.alt}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                />
-                <span className="absolute bottom-4 left-4 z-10 border border-[#bdd66a]/40 bg-[#0b1a14]/66 px-[14px] py-2 text-[10px] tracking-[0.16em] text-[#e8f0d2] backdrop-blur-[6px]">
-                  {shot.label}
-                </span>
-                <span className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center border border-[#bdd66a]/40 bg-[#0b1a14]/66 text-[#e8f0d2] opacity-0 backdrop-blur-[6px] transition-opacity duration-300 group-hover:opacity-100">
-                  <Expand size={15} />
-                </span>
-              </button>
+              <div className="group relative">
+                <button
+                  type="button"
+                  onClick={() => setLightboxOpen(true)}
+                  aria-label={`Open full-size image: ${shot.label}`}
+                  className="relative flex aspect-4/3 w-full flex-col items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#2c4433] to-[#152720] p-0 text-[11px] uppercase tracking-[0.13em] text-cream"
+                >
+                  <Image
+                    src={shot.url || "/placeholder.svg"}
+                    alt={shot.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                  <span className="absolute bottom-4 left-4 z-10 border border-[#bdd66a]/40 bg-[#0b1a14]/66 px-[14px] py-2 text-[10px] tracking-[0.16em] text-[#e8f0d2] backdrop-blur-[6px]">
+                    {shot.label}
+                  </span>
+                  <span className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center border border-[#bdd66a]/40 bg-[#0b1a14]/66 text-[#e8f0d2] opacity-0 backdrop-blur-[6px] transition-opacity duration-300 group-hover:opacity-100">
+                    <Expand size={15} />
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToProduct(productIndex - 1)
+                  }}
+                  aria-label="Slide to previous product"
+                  className="absolute left-3 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center border border-[#bdd66a]/40 bg-[#0b1a14]/66 text-[#e8f0d2] opacity-0 backdrop-blur-[6px] transition-opacity duration-300 group-hover:opacity-100"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToProduct(productIndex + 1)
+                  }}
+                  aria-label="Slide to next product"
+                  className="absolute right-3 top-1/2 z-10 grid h-10 w-10 -translate-y-1/2 place-items-center border border-[#bdd66a]/40 bg-[#0b1a14]/66 text-[#e8f0d2] opacity-0 backdrop-blur-[6px] transition-opacity duration-300 group-hover:opacity-100"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
               <div className="flex items-end justify-between gap-5 px-0.5 pt-[18px] text-cream">
                 <div className="flex flex-col gap-[5px]">
                   <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#bdd66a]">
-                    Catalogue · 01
+                    Catalogue · {String(productIndex + 1).padStart(2, "0")}
                   </span>
-                  <strong className="text-xl font-semibold tracking-[-0.05em]">Urea N46</strong>
-                  <span className="text-[11px] text-white/58">
-                    Granulated, wholesale quantities
-                  </span>
+                  <strong className="text-xl font-semibold tracking-[-0.05em]">{product.name}</strong>
+                  <span className="text-[11px] text-white/58">{product.subtitle}</span>
                 </div>
                 <ArrowUpRight size={20} />
               </div>
