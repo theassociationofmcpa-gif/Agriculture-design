@@ -43,7 +43,7 @@ const products = [
     gallery: [
       {
         url: "/npk-fertilizer.jpeg",
-        label: "Granules on leaf",
+        label: "NPK Fertilizer",
         alt: "White NPK fertilizer granules spread across a green leaf",
       },
     ],
