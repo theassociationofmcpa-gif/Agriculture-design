@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/urea-field.jpeg',
+        url: '/social-preview.avif',
         width: 1200,
         height: 630,
         alt: 'UAB Ruedus agricultural wholesale fields',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: ['/urea-field.jpeg'],
+    images: ['/social-preview.avif'],
   },
   icons: {
     icon: '/icon.png',
