@@ -54,7 +54,7 @@ const contactItems = [
   },
   {
     label: "Email us",
-    value: <>Andrius@ruedus.lt</>,
+    value: <>info@ruedus.com</>,
     icon: Mail,
   },
 ]
